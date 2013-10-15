@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularificationApp', [])
+angular.module('angularificationApp', ['ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

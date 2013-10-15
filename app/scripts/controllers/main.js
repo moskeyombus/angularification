@@ -3,8 +3,9 @@
 angular.module('angularificationApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
+      'Time',
+      'Space',
+      'Light',
+      'Gravity'
     ];
   });

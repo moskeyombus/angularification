@@ -24,10 +24,9 @@
   <p ng-show="active">You chose <b>{{active}}</b></p>
   <h3>Enjoy coding! - Yeoman</h3>
   <div id="main" ng-click="hideTooltip()">
-  <div class="tooltip" ng-click="$event.stopPropagation()" ng-show="showtooltip">
-    <input type="text" ng-model="value" />
+    <div class="edit-field" ng-click="$event.stopPropagation()" ng-show="showtooltip">
+      <input type="text" ng-model="value" />
+    </div>
+    <p class="edit-text" ng-click="toggleTooltip($event)">{{value}}</p>
   </div>
-  <p ng-click="toggleTooltip($event)">{{value}}</p>
-
-</div>
 </div>

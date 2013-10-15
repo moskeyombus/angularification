@@ -53,9 +53,9 @@ section, footer, header, aside, nav{
 }
 
 #main{
-    height:300px;
+    height:200px;
     position:relative;
-    padding-top: 150px;
+    padding-top: 100px;
 }
 
 nav{
@@ -114,7 +114,7 @@ p b{
     font-size:18px;
 }
 
-p:before{
+p.edit-text:before {
     content:'✎';
     display:inline-block;
     margin-right:5px;
@@ -122,7 +122,7 @@ p:before{
     vertical-align: text-bottom;
 }
 
-.tooltip{
+.edit-field{
     background-color:#5c9bb7;
 
     background-image:-webkit-linear-gradient(top, #5c9bb7, #5392ad);
@@ -140,7 +140,7 @@ p:before{
     top: 80px;
 }
 
-.tooltip:after{
+.edit-field:after{
     /* The tip of the tooltip */
     content:'';
     position:absolute;
@@ -153,7 +153,7 @@ p:before{
     margin-left:-6px;
 }
 
-.tooltip input{
+.edit-field input{
     border: none;
     width: 100%;
     line-height: 34px;

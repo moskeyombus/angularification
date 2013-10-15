@@ -15,7 +15,7 @@ angular.module('angularificationApp')
 		$scope.showtooltip = false;
 	}
 	$scope.toggleTooltip = function(e){
-		console.log('toggle')
+		console.log('toggle');
 		e.stopPropagation();
 		$scope.showtooltip = !$scope.showtooltip;
 	}

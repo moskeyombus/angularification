@@ -2,8 +2,6 @@
 
 angular.module('angularificationApp')
   .factory('vcoFactory', function () {
-    // Service logic
-    // ...
     var VCO = function(context) {
         this.oscillator = context.createOscillator();
         this.oscillator.type = this.oscillator.SAWTOOTH;
@@ -14,9 +12,6 @@ angular.module('angularificationApp')
         this.output = this.oscillator;
 
         var that = this;
-        // $(document).bind('frequency', function (_, frequency) {
-        //   that.setFrequency(frequency);
-        // });
         return that;
       };
 
@@ -32,7 +27,6 @@ angular.module('angularificationApp')
         this.oscillator.frequency.setValueAtTime(frequency, context.currentTime);
       };
 
-    // Public API here
     return {
       newVco: function (context) {
         var vco = new VCO(context)

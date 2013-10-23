@@ -10,10 +10,10 @@ angular.module('angularificationApp')
     $scope.vco.connect($scope.vca);
 	  $scope.envelope.connect($scope.vca.amplitude);
 	  $scope.vca.connect($scope.context.destination);
-    inputDeviceService.$bindSynthKeys();
 
-    $scope.$on('note', function() {
-        $scope.vco.setFrequency(440);
+    $scope.$on('note', function(event,data) {
+      console.log(data.frequency)
+        $scope.vco.setFrequency($scope.context, data.frequency);
         $scope.envelope.trigger($scope.context);
     });
 

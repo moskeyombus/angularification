@@ -2,9 +2,6 @@
 
 angular.module('angularificationApp')
   .factory('envelopeFactory', function () {
-    // Service logic
-    // ...
-
     var Envelope = function(context) {
       this.attackTime = 0.1;
       this.releaseTime = 0.1;

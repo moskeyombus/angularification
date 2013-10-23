@@ -10,4 +10,6 @@ angular.module('angularificationApp', ['ui.bootstrap'])
       .otherwise({
         redirectTo: '/'
       });
-  });
+
+  })
+//});

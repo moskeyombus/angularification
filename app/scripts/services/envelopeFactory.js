@@ -10,15 +10,6 @@ angular.module('angularificationApp')
       this.releaseTime = 0.1;
 
       var that = this;
-      // $(document).bind('gateOn', function (_) {
-      //   that.trigger();
-      // });
-      // $(document).bind('setAttack', function (_, value) {
-      //   that.attackTime = value;
-      // });
-      // $(document).bind('setRelease', function (_, value) {
-      //   that.releaseTime = value;
-      // });
       return that;
     };
 

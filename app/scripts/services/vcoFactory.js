@@ -4,10 +4,7 @@ angular.module('angularificationApp')
   .factory('vcoFactory', function () {
     var VCO = function(context) {
       this.oscillator = context.createOscillator();
-      this.oscillator.type = this.oscillator.SAWTOOTH;
-      this.oscillator.frequency.value = 440;
-      this.oscillator.start(0);
-
+      this.oscillator.type = this.oscillator.SINE;
       this.input = this.oscillator;
       this.output = this.oscillator;
 

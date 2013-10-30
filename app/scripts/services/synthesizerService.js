@@ -5,16 +5,14 @@ angular.module('angularificationApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
     var activeNotes = [];
 
-    this.$startNote = function(context, note, frequency, sound) {
+    this.$startNote = function(context, note, sound) {
       activeNotes[note] = sound;
-      activeNotes[note].start(context, frequency);
-      console.log(activeNotes);
+      activeNotes[note].start(context);
     }
 
     this.$stopNote = function(note) {
       activeNotes[note].stop();
       delete activeNotes[note];
-            console.log(activeNotes);
     }
 
   });

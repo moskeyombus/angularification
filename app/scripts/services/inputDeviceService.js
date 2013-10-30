@@ -10,12 +10,18 @@ angular.module('angularificationApp')
     }
   	this.$bindSynthKeys = function() {
       var keyboard = qwertyHancock({id: 'keyboard', startNote: 'A4', octaves: 2});
+      
       keyboard.keyDown(function (note, frequency) {
-        console.log(note, frequency);
         $rootScope.$broadcast('note', {
-          frequency: frequency
+          frequency: frequency,
+          note: note
         });
       });
-      keyboard.keyUp(function () { });
+
+      keyboard.keyUp(function (note) {
+        $rootScope.$broadcast('stopNote', {
+          note: note
+        });
+      });
     }
   });

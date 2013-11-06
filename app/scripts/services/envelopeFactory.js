@@ -4,7 +4,7 @@ angular.module('angularificationApp')
   .factory('envelopeFactory', function () {
     var Envelope = function(context) {
       this.attackTime = 0.1;
-      this.releaseTime = 0.1;
+      this.releaseTime = 0.9;
 
       var that = this;
       return that;

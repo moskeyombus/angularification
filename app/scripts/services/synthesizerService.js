@@ -7,6 +7,7 @@ angular.module('angularificationApp')
     this.$vcos = [];
     this.$amplifiers = [];
     this.$envelopes = [];
+    this.$context = new webkitAudioContext;
 
     this.$addVco = function(vco) {
       this.$vcos.push(vco)

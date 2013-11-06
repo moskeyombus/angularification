@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularificationApp')
-  .service('synthesizerService', function synthesizerService() {
+  .service('synthesizerService', ['vcoFactory', function synthesizerService(vcoFactory) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var activeNotes = [];
     this.$vcos = [];
@@ -9,12 +9,21 @@ angular.module('angularificationApp')
     this.$envelopes = [];
     this.$context = new webkitAudioContext;
 
-    this.$addVco = function(vco) {
+    this.$addVco = function(type, frequency) {
+      var vco = {
+        wave_type: type,
+        frequency: frequency
+      }
       this.$vcos.push(vco)
     }
 
-    this.$getVcos = function() {
-      return this.$vcos;
+    this.$getVcos = function(frequency) {
+      var builtVcos = [];
+      angular.forEach(this.$vcos, function(vco) {
+        var new_vco = vcoFactory.newVco(this.$context, vco.wave_type, frequency)
+        builtVcos.push(new_vco.buildOscillator());
+      }, this)
+      return builtVcos;
     }
 
     this.$getAmplifiers = function() {
@@ -31,4 +40,6 @@ angular.module('angularificationApp')
       delete activeNotes[note];
     }
 
-  });
+
+
+  }]);

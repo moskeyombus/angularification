@@ -2,12 +2,24 @@
 
 angular.module('angularificationApp')
   .factory('vcoFactory', function () {
-    var VCO = function(context) {
-      this.oscillator = context.createOscillator();
-      this.oscillator.type = this.oscillator.SAWTOOTH;
-      this.input = this.oscillator;
-      this.output = this.oscillator;
+    var VCO = function(context, type, frequency) {
+      this.frequency = frequency;
+      this.wave_type = type; 
+      this.context = context;
+      this.output;
+      this.input;
+      this.oscillator;
+      // this.oscillatorType = type;
 
+      this.buildOscillator = function () {
+        this.oscillator = this.context.createOscillator();
+        this.oscillator.type = this.wave_type;
+        this.input = this.oscillator;
+        this.output = this.oscillator;
+        this.oscillator.frequency.setValueAtTime(this.frequency, this.context.currentTime);
+        var that = this;
+        return that
+      };  
 
       this.setFrequency = function (context, frequency) {
         this.oscillator.frequency.setValueAtTime(frequency, context.currentTime);
@@ -36,8 +48,8 @@ angular.module('angularificationApp')
     //VCO.prototype.
 
     return {
-      newVco: function (context) {
-        var vco = new VCO(context)
+      newVco: function (context, type, frequency) {
+        var vco = new VCO(context, type, frequency)
         return vco
       } 
     };

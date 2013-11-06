@@ -1,23 +1,24 @@
 'use strict';
 
 angular.module('angularificationApp')
-  .factory('soundFactory', ['vcoFactory', 'vcaFactory', 'envelopeFactory', 'synthesizerService', function (vcoFactory, vcaFactory, envelopeFactory, synthService) {
+  .factory('soundFactory', ['vcaFactory', 'envelopeFactory', 'synthesizerService', function (vcaFactory, envelopeFactory, synthService) {
     // Service logic
     // ...
     var Sound = function(context, frequency) {
       this.nodes = [];
       this.frequency = frequency;
       //this.context = context
-      this.test = vcoFactory.newVco(synthService.$context);
-      synthService.$addVco(this.test)
-      this.test = vcoFactory.newVco(synthService.$context);
-      synthService.$addVco(this.test)
-      this.vcos = synthService.$getVcos();
+
+
+      // synthService.$addVco('sawtooth', this.frequency);
+      // synthService.$addVco('sine', this.frequency);
+
+      this.vcos = synthService.$getVcos(this.frequency);
       //this.oscillators.setFrequencies(frequency);
-      angular.forEach(this.vcos, function(vco) {
-        vco.setFrequency(synthService.$context, this.frequency)
-        //debugger
-      }, this);
+      // angular.forEach(this.vcos, function(vco) {
+      //   vco.setFrequency(synthService.$context, this.frequency)
+      //   //debugger
+      // }, this);
       //this.vco = vcoFactory.newVco(context);
       //this.vco.setFrequency(context, this.frequency);
       //this.vco2 = vcoFactory.newVco(context);
@@ -29,7 +30,7 @@ angular.module('angularificationApp')
       //this.vco.connect(this.vca);
       //this.vco2.connect(this.vca);
       angular.forEach(this.vcos, function(vco) {
-        vco.connect(this.vca)
+        vco.connect(this.vca);
       }, this);
       this.envelope.connect(this.vca.amplitude);
       this.vca.connect(synthService.$context.destination);

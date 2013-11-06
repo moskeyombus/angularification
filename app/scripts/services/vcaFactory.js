@@ -11,17 +11,26 @@ angular.module('angularificationApp')
       this.input = this.gain;
       this.output = this.gain;
       this.amplitude = this.gain.gain;
+
+      this.connect = function(node) {
+        if (node.hasOwnProperty('input')) {
+          this.output.connect(node.input);
+        } else {
+          this.output.connect(node);
+        };
+      };
+      
       var that = this;
       return that;
     };
 
-    VCA.prototype.connect = function(node) {
-      if (node.hasOwnProperty('input')) {
-        this.output.connect(node.input);
-      } else {
-        this.output.connect(node);
-      };
-    };
+    // VCA.prototype.connect = function(node) {
+    //   if (node.hasOwnProperty('input')) {
+    //     this.output.connect(node.input);
+    //   } else {
+    //     this.output.connect(node);
+    //   };
+    // };
 
     // Public API here
     return {

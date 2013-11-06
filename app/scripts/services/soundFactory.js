@@ -7,28 +7,22 @@ angular.module('angularificationApp')
     var Sound = function(context, frequency) {
       this.nodes = [];
       this.frequency = frequency;
-      //this.context = context
 
-
-      // synthService.$addVco('sawtooth', this.frequency);
-      // synthService.$addVco('sine', this.frequency);
-
+      // yeah look how nice that is
+      // may end up using a service for each node type
       this.vcos = synthService.$getVcos(this.frequency);
-      //this.oscillators.setFrequencies(frequency);
-      // angular.forEach(this.vcos, function(vco) {
-      //   vco.setFrequency(synthService.$context, this.frequency)
-      //   //debugger
-      // }, this);
-      //this.vco = vcoFactory.newVco(context);
-      //this.vco.setFrequency(context, this.frequency);
-      //this.vco2 = vcoFactory.newVco(context);
-      //this.vco2.setFrequency(context, this.frequency);
-      //this.vco2.oscillator.type = this.vco2.oscillator.SINE;
-      //this.amplifiers = synthService.$getAmplifiers();
+
       this.vca = vcaFactory.newVca(synthService.$context);
       this.envelope = envelopeFactory.newEnvelope(synthService.$context);
-      //this.vco.connect(this.vca);
-      //this.vco2.connect(this.vca);
+
+      // for connections, generate random string 
+      // (w/ storage of all used for collision check)
+      // attach to any node as an ID
+      // angular has a 'filter' method for finding node in array
+      // #########
+      // or just have a counter that increments each time and ID is assigned
+      // to a node.  easier.  node only has to know connected node IDs
+      // will need to account for normal input vs params input
       angular.forEach(this.vcos, function(vco) {
         vco.connect(this.vca);
       }, this);
@@ -43,14 +37,10 @@ angular.module('angularificationApp')
       angular.forEach(this.vcos, function(vco) {
         vco.oscillator.start(this.now)
       }, this);
-      //this.vco.oscillator.start(now);
-      //this.vco2.oscillator.start(now);
       this.envelope.trigger(synthService.$context);
       angular.forEach(this.vcos, function(vco) {
         this.nodes.push(vco.oscillator);
       }, this);
-      //this.nodes.push(this.vco.oscillator);
-      //this.nodes.push(this.vco2.oscillator);
     };
 
     Sound.prototype.stop = function() {

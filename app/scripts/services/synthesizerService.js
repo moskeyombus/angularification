@@ -6,9 +6,8 @@ angular.module('angularificationApp')
     var activeNotes = [];
     var nodeCounter = 0;
     this.$currentNodes = [];
-    this.$vcos = [];
-    this.$vcas = [];
     this.$envelopes = [];
+    this.$nodes = [];
     this.$context = new webkitAudioContext;
 
     this.$addVco = function(type, frequency) {
@@ -17,45 +16,49 @@ angular.module('angularificationApp')
         id: nodeCounter,
         wave_type: type,
         frequency: frequency,
+        type: 'vco',
         connections: []
       }
-      this.$vcos.push(vco)
+      this.$nodes.push(vco)
       this.$currentNodes[nodeCounter] = vco
       return vco;
     }
 
-    this.$getVcos = function(frequency) {
-      var builtVcos = [];
-      angular.forEach(this.$vcos, function(vco) {
-        var new_vco = vcoFactory.newVco(this.$context, vco.wave_type, frequency)
-        builtVcos.push(new_vco.buildOscillator());
-      }, this)
-      return builtVcos;
+    this.$getNodes = function(frequency) {
+      return this.$nodes;
     }
 
     this.$addVca = function() {
       nodeCounter += 1;
       var vca = {
         id: nodeCounter,
+        type: 'vca',
         connections: []
       }
-      this.$vcas.push(vca);
+      this.$nodes.push(vca);
       this.$currentNodes[nodeCounter] = vca;
       return vca;
     }
 
-    this.$getVcas = function() {
-      var builtVcas = [];
-      angular.forEach(this.$vcas, function(vca) {
-        var new_vca = vcaFactory.newVca(this.$context);
-        builtVcas.push(new_vca.buildAmplifier());
-      }, this)
-      return builtVcas;
+    this.$addFinalOutput = function() {
+      nodeCounter += 1;
+      var output = {
+        id: nodeCounter,
+        type: 'final_output'
+      }
+      this.$nodes.push(output);
+      this.$currentNodes[nodeCounter] = output;
+      return output;
     }
 
-    this.$connectNodes = function(input,output) {
-      input.connections.push(output.id)
+    this.$connectNodes = function(outNode,inNode,param) {
+      var connection = {
+        id: inNode.id,
+        param: param
+      }
+      outNode.connections.push(connection)
     }
+
 
     this.$startNote = function(context, note, sound) {
       activeNotes[note] = sound;
@@ -66,7 +69,5 @@ angular.module('angularificationApp')
       activeNotes[note].stop();
       delete activeNotes[note];
     }
-
-
-
+    
   }]);

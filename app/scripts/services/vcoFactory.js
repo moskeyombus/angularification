@@ -2,11 +2,13 @@
 
 angular.module('angularificationApp')
   .factory('vcoFactory', function () {
-    var VCO = function(context, type, frequency, id) {
+    var VCO = function(context, type, frequency, id, connections) {
       this.id = id;
       this.frequency = frequency;
+      this.type = 'vco'
       this.wave_type = type; 
       this.context = context;
+      this.connections = connections;
       this.output;
       this.input;
       this.oscillator;
@@ -38,19 +40,9 @@ angular.module('angularificationApp')
       return that;
     };
 
-    // VCO.prototype.connect = function(node) {
-    //   if (node.hasOwnProperty('input')) {
-    //     that.output.connect(node.input);
-    //   } else {
-    //     that.output.connect(node);
-    //   };
-    // };
-
-    //VCO.prototype.
-
     return {
-      newVco: function (context, type, frequency, id) {
-        var vco = new VCO(context, type, frequency, id)
+      newVco: function (context, type, frequency, id, connections) {
+        var vco = new VCO(context, type, frequency, id, connections)
         return vco
       } 
     };

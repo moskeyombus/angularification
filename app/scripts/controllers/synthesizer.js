@@ -9,9 +9,10 @@ angular.module('angularificationApp')
     var osc2 = synthService.$addVco('sawtooth');
     var osc3 = synthService.$addVco('sawtooth');
     var amp1 = synthService.$addVca();
-    synthService.$connectNodes(osc1, amp1)
-    synthService.$connectNodes(osc2, amp1)
-
+    var out1 = synthService.$addFinalOutput();
+    synthService.$connectNodes(osc1, amp1, 'input')
+    synthService.$connectNodes(osc2, amp1, 'input')
+    synthService.$connectNodes(amp1, out1, 'input')
 
     $scope.$on('note', function(event,data) {
       var sound = soundFactory.newSound($scope.context, data.frequency);

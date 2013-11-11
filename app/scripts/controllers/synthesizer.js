@@ -5,9 +5,13 @@ angular.module('angularificationApp')
     $scope.synth = 'synth'
     $scope.inherited = $scope.scopeTest
     
-    synthService.$addVco('sine');
-    synthService.$addVco('sawtooth');
-    synthService.$addVco('sawtooth');
+    var osc1 = synthService.$addVco('sine');
+    var osc2 = synthService.$addVco('sawtooth');
+    var osc3 = synthService.$addVco('sawtooth');
+    var amp1 = synthService.$addVca();
+    synthService.$connectNodes(osc1, amp1)
+    synthService.$connectNodes(osc2, amp1)
+
 
     $scope.$on('note', function(event,data) {
       var sound = soundFactory.newSound($scope.context, data.frequency);

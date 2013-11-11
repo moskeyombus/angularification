@@ -12,7 +12,9 @@ angular.module('angularificationApp')
       // may end up using a service for each node type
       this.vcos = synthService.$getVcos(this.frequency);
 
-      this.vca = vcaFactory.newVca(synthService.$context);
+      //var test_vca = vcaFactory.newVca(synthService.$context);
+      //this.vca = test_vca.buildAmplifier();
+      this.vcas = synthService.$getVcas();
       this.envelope = envelopeFactory.newEnvelope(synthService.$context);
 
       // for connections, generate random string 
@@ -24,10 +26,10 @@ angular.module('angularificationApp')
       // to a node.  easier.  node only has to know connected node IDs
       // will need to account for normal input vs params input
       angular.forEach(this.vcos, function(vco) {
-        vco.connect(this.vca);
+        vco.connect(this.vcas[0]);
       }, this);
-      this.envelope.connect(this.vca.amplitude);
-      this.vca.connect(synthService.$context.destination);
+      this.envelope.connect(this.vcas[0].amplitude);
+      this.vcas[0].connect(synthService.$context.destination);
       var that = this;
       return that;
     }

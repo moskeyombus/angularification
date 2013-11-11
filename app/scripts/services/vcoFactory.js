@@ -2,7 +2,8 @@
 
 angular.module('angularificationApp')
   .factory('vcoFactory', function () {
-    var VCO = function(context, type, frequency) {
+    var VCO = function(context, type, frequency, id) {
+      this.id = id;
       this.frequency = frequency;
       this.wave_type = type; 
       this.context = context;
@@ -48,8 +49,8 @@ angular.module('angularificationApp')
     //VCO.prototype.
 
     return {
-      newVco: function (context, type, frequency) {
-        var vco = new VCO(context, type, frequency)
+      newVco: function (context, type, frequency, id) {
+        var vco = new VCO(context, type, frequency, id)
         return vco
       } 
     };

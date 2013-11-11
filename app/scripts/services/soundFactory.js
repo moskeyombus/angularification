@@ -51,7 +51,7 @@ angular.module('angularificationApp')
           builtNodes[node.id] = new_vco.buildOscillator();
         }
         else if (node.type === 'vca') {
-          var new_vca = vcaFactory.newVca(synthService.$context, node.id, node.connections);
+          var new_vca = vcaFactory.newVca(synthService.$context, node.id, node.gainValue, node.connections);
           builtNodes[node.id] = new_vca.buildAmplifier();
         }
         else if (node.type === 'final_output') {

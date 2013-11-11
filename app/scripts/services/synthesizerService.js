@@ -5,7 +5,6 @@ angular.module('angularificationApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
     var activeNotes = [];
     var nodeCounter = 0;
-    this.$currentNodes = [];
     this.$envelopes = [];
     this.$nodes = [];
     this.$context = new webkitAudioContext;
@@ -20,7 +19,6 @@ angular.module('angularificationApp')
         connections: []
       }
       this.$nodes.push(vco)
-      this.$currentNodes[nodeCounter] = vco
       return vco;
     }
 
@@ -28,15 +26,15 @@ angular.module('angularificationApp')
       return this.$nodes;
     }
 
-    this.$addVca = function() {
+    this.$addVca = function(gain) {
       nodeCounter += 1;
       var vca = {
         id: nodeCounter,
         type: 'vca',
+        gainValue: gain,
         connections: []
       }
       this.$nodes.push(vca);
-      this.$currentNodes[nodeCounter] = vca;
       return vca;
     }
 
@@ -47,7 +45,6 @@ angular.module('angularificationApp')
         type: 'final_output'
       }
       this.$nodes.push(output);
-      this.$currentNodes[nodeCounter] = output;
       return output;
     }
 
@@ -69,5 +66,5 @@ angular.module('angularificationApp')
       activeNotes[note].stop();
       delete activeNotes[note];
     }
-    
+
   }]);

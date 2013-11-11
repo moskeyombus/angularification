@@ -3,10 +3,11 @@
 angular.module('angularificationApp')
   .factory('vcaFactory', function () {
 
-    var VCA = function(context, id, connections) {
+    var VCA = function(context, id, gainValue, connections) {
       this.id = id;
       this.type = 'vca'
       this.gain;
+      this.gainValue = gainValue;
       this.context = context;
       this.connections = connections;
       this.input;
@@ -15,7 +16,7 @@ angular.module('angularificationApp')
 
       this.buildAmplifier = function () {
         this.gain = context.createGain();
-        this.gain.gain.value = 0.5;
+        this.gain.gain.value = this.gainValue;
         this.input = this.gain;
         this.output = this.gain;
         this.amplitude = this.gain.gain;
@@ -37,8 +38,8 @@ angular.module('angularificationApp')
 
     // Public API here
     return {
-      newVca: function (context, id, connections) {
-        var vca = new VCA(context, id, connections)
+      newVca: function (context, id, gainValue, connections) {
+        var vca = new VCA(context, id, gainValue, connections)
         return vca
       }
     };

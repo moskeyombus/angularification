@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularificationApp')
-  .service('synthesizerService', ['vcoFactory', 'vcaFactory', function synthesizerService(vcoFactory, vcaFactory) {
+  .service('synthesizerService', function synthesizerService() {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var activeNotes = [];
     var nodeCounter = 0;
@@ -67,4 +67,4 @@ angular.module('angularificationApp')
       delete activeNotes[note];
     }
 
-  }]);
+  });

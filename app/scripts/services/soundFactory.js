@@ -20,7 +20,6 @@ angular.module('angularificationApp')
     
     Sound.prototype.start = function(context) {
       this.now = synthService.$context.currentTime;
-
       angular.forEach(this.currentNodes, function(node) {
         if (node.type === 'vco') {
           node.oscillator.start(this.now);
@@ -44,7 +43,6 @@ angular.module('angularificationApp')
     Sound.prototype.buildNodes = function(frequency) {
       var builtNodes = [];
       angular.forEach(synthService.$getNodes(), function(node) {
-        
         // switch to case statement
         if (node.type === 'vco') {
           var new_vco = vcoFactory.newVco(synthService.$context, node.wave_type, frequency, node.id, node.connections)
@@ -62,7 +60,6 @@ angular.module('angularificationApp')
     }
 
     Sound.prototype.buildConnections = function(currentNodes) {
-
       angular.forEach(currentNodes, function(node) {
         angular.forEach(node.connections, function(output){
           // TODO check for param type (input, amplitutde, etc)

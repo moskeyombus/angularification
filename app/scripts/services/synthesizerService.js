@@ -17,14 +17,14 @@ angular.module('angularificationApp')
         frequency: frequency,
         type: 'vco',
         connections: []
-      }
-      this.$nodes.push(vco)
+      };
+      this.$nodes.push(vco);
       return vco;
-    }
+    };
 
-    this.$getNodes = function(frequency) {
+    this.$getNodes = function() {
       return this.$nodes;
-    }
+    };
 
     this.$addVca = function(gain) {
       nodeCounter += 1;
@@ -33,38 +33,38 @@ angular.module('angularificationApp')
         type: 'vca',
         gainValue: gain,
         connections: []
-      }
+      };
       this.$nodes.push(vca);
       return vca;
-    }
+    };
 
     this.$addFinalOutput = function() {
       nodeCounter += 1;
       var output = {
         id: nodeCounter,
         type: 'final_output'
-      }
+      };
       this.$nodes.push(output);
       return output;
-    }
+    };
 
     this.$connectNodes = function(outNode,inNode,param) {
       var connection = {
         id: inNode.id,
         param: param
-      }
-      outNode.connections.push(connection)
-    }
+      };
+      outNode.connections.push(connection);
+    };
 
 
     this.$startNote = function(context, note, sound) {
       activeNotes[note] = sound;
       activeNotes[note].start(context);
-    }
+    };
 
     this.$stopNote = function(note) {
       activeNotes[note].stop();
       delete activeNotes[note];
-    }
+    };
 
   });

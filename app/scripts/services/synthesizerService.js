@@ -13,18 +13,22 @@ angular.module('angularificationApp')
       nodeCounter += 1;
       var vco = {
         id: nodeCounter,
-        wave_type: type,
+        waveType: type,
         frequency: frequency,
         type: 'vco',
         connections: []
       };
-      this.$nodes.push(vco);
+      this.$nodes[nodeCounter] = vco;
       return vco;
     };
 
     this.$getNodes = function() {
       return this.$nodes;
     };
+
+    this.$getNode = function(id) {
+      return this.$nodes[id];
+    },
 
     this.$addVca = function(gain) {
       nodeCounter += 1;
@@ -34,7 +38,7 @@ angular.module('angularificationApp')
         gainValue: gain,
         connections: []
       };
-      this.$nodes.push(vca);
+      this.$nodes[nodeCounter] = vca;
       return vca;
     };
 
@@ -44,7 +48,7 @@ angular.module('angularificationApp')
         id: nodeCounter,
         type: 'final_output'
       };
-      this.$nodes.push(output);
+      this.$nodes[nodeCounter] = output;
       return output;
     };
 

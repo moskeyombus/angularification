@@ -5,7 +5,7 @@
         ng-switch on="node.type">
           <div class="node-switch" ng-switch-when="vco">Vco</div>
           <div class="node-switch" ng-switch-when="vca">
-          	<div gainnode></div>
+          	<div gainnode id="{{node.id}}"></div>
           </div>
           <div class="node-switch" ng-switch-when="final_output">Final Output</div>
       </div>

@@ -19,14 +19,14 @@ angular.module('angularificationApp')
     };
 
     Envelope.prototype.connect = function (param) {
-        this.param = param
-    }
+      this.param = param;
+    };
 
     // Public API here
     return {
       newEnvelope: function (context) {
-        var envelope = new Envelope(context)
-        return envelope
-      }, 
+        var envelope = new Envelope(context);
+        return envelope;
+      },
     };
   });

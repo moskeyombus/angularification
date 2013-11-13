@@ -16,15 +16,15 @@ angular.module('angularificationApp')
 
       var that = this;
       return that;
-    }
+    };
     
-    Sound.prototype.start = function(context) {
+    Sound.prototype.start = function() {
       this.now = synthService.$context.currentTime;
       angular.forEach(this.currentNodes, function(node) {
         if (node.type === 'vco') {
           node.oscillator.start(this.now);
-          this.nodes.push(node.oscillator);          
-        } 
+          this.nodes.push(node.oscillator);
+        }
       }, this);
     };
 
@@ -45,19 +45,19 @@ angular.module('angularificationApp')
       angular.forEach(synthService.$getNodes(), function(node) {
         // switch to case statement
         if (node.type === 'vco') {
-          var new_vco = vcoFactory.newVco(synthService.$context, node.wave_type, frequency, node.id, node.connections)
-          builtNodes[node.id] = new_vco.buildOscillator();
+          var newVco = vcoFactory.newVco(synthService.$context, node.waveType, frequency, node.id, node.connections);
+          builtNodes[node.id] = newVco.buildOscillator();
         }
         else if (node.type === 'vca') {
-          var new_vca = vcaFactory.newVca(synthService.$context, node.id, node.gainValue, node.connections);
-          builtNodes[node.id] = new_vca.buildAmplifier();
+          var newVca = vcaFactory.newVca(synthService.$context, node.id, node.gainValue, node.connections);
+          builtNodes[node.id] = newVca.buildAmplifier();
         }
         else if (node.type === 'final_output') {
-          builtNodes[node.id] = synthService.$context.destination
+          builtNodes[node.id] = synthService.$context.destination;
         }
-      }, this)
+      }, this);
       return builtNodes;
-    }
+    };
 
     Sound.prototype.buildConnections = function(currentNodes) {
       angular.forEach(currentNodes, function(node) {
@@ -67,13 +67,13 @@ angular.module('angularificationApp')
         }, this);
       }, this);
       return currentNodes;
-    }
+    };
 
     // Public API here
     return {
       newSound: function (context, frequency) {
-        var sound = new Sound(synthService.$context, frequency)
-        return sound
-      } 
+        var sound = new Sound(synthService.$context, frequency);
+        return sound;
+      }
     };
   }]);

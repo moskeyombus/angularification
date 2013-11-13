@@ -6,9 +6,9 @@ angular.module('angularificationApp')
 
     var depressedKeys = {};
     this.$isEmpty = function(obj) {
-        return Object.keys(obj).length === 0;
-    }
-  	this.$bindSynthKeys = function() {
+      return Object.keys(obj).length === 0;
+    };
+    this.$bindSynthKeys = function() {
       var keyboard = qwertyHancock({id: 'keyboard', startNote: 'A4', octaves: 2});
       
       keyboard.keyDown(function (note, frequency) {
@@ -23,5 +23,5 @@ angular.module('angularificationApp')
           note: note
         });
       });
-    }
+    };
   });

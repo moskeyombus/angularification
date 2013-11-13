@@ -3,10 +3,14 @@
 angular.module('angularificationApp')
   .directive('gainnode', function () {
     return {
-      template: '<div class="gain"></div>',
+      templateUrl: 'views/gainnode.html',
       restrict: 'A',
+      scope:{
+        id:'@'
+      },
+      controller: 'VcaCtrl',
       link: function postLink(scope, element, attrs) {
-        element.text('this is the gainnode directive');
+
       }
     };
   });

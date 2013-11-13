@@ -2,11 +2,12 @@
 
 angular.module('angularificationApp')
   .controller('VcaCtrl', [ '$scope', 'synthesizerService' , function ($scope, synthService) {
-    $scope.gain = 'Gain';
-    $scope.$watch('id', function(value) {
-      $scope.id = value;
-      $scope.thisNode = synthService.$getNode(value);
-      console.log($scope.thisNode);
-    });
-
+    $scope.id = $scope.vcaId;
+    $scope.thisNode = synthService.$getNode($scope.id);
+    $scope.fuck = 0;
+    $scope.gainValue = 0;
+    $scope.amplitudeChange = function () {
+         console.log('amplitude') 
+    };
+    console.log('test')
   }]);

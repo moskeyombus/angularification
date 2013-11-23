@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularificationApp')
-  .service('synthesizerService', ['vcaFactory', function synthesizerService(vcaFactory) {
+  .service('synthesizerService', [function synthesizerService() {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var activeNotes = [];
     var nodeCounter = 0;
@@ -9,6 +9,15 @@ angular.module('angularificationApp')
     this.$nodes = [];
     this.$context = new webkitAudioContext;
     this.$prebuiltNodes = [];
+
+    this.$newId = function() {
+      nodeCounter += 1;
+      return nodeCounter;
+    };
+
+    this.$getContext = function() {
+      return this.$context;
+    };
 
     this.$addVco = function(type, frequency) {
       nodeCounter += 1;
@@ -31,31 +40,31 @@ angular.module('angularificationApp')
       return this.$nodes[id];
     },
 
-    this.$getAmp = function(id) {
-      return this.$prebuiltNodes[id];
+    // this.$getAmp = function(id) {
+    //   return this.$prebuiltNodes[id];
+    // },
+
+    // this.$setAmp = function(id, amp) {
+    //   this.$prebuiltNodes[id] = amp;
+    // },
+
+    this.$setNode = function(node) {
+      this.$nodes[node.id] = node;
     },
 
-    this.$setAmp = function(id, amp) {
-      this.$prebuiltNodes[id] = amp;
-    },
-
-    this.$setNode = function(id, node) {
-      this.$nodes[id] = node;
-    },
-
-    this.$addVca = function(gain) {
-      nodeCounter += 1;
-      var vca = {
-        id: nodeCounter,
-        type: 'vca',
-        gainValue: gain,
-        connections: []
-      };
-      this.$nodes[nodeCounter] = vca;
-      var builtVca = vcaFactory.newVca(this.$context, vca.id, vca.gainValue, vca.connections);
-      this.$prebuiltNodes[vca.id] = builtVca;
-      return builtVca.buildAmplifier();
-    };
+    // this.$addVca = function(gain) {
+    //   nodeCounter += 1;
+    //   var vca = {
+    //     id: nodeCounter,
+    //     type: 'vca',
+    //     gainValue: gain,
+    //     connections: []
+    //   };
+    //   this.$nodes[nodeCounter] = vca;
+    //   var builtVca = vcaFactory.newVca(this.$context, vca.id, vca.gainValue, vca.connections);
+    //   this.$prebuiltNodes[vca.id] = builtVca;
+    //   return builtVca.buildAmplifier();
+    // };
 
     this.$addFinalOutput = function() {
       nodeCounter += 1;

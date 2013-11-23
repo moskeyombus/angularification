@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularificationApp')
-  .factory('soundFactory', ['vcoFactory', 'envelopeFactory', 'synthesizerService', function (vcoFactory, envelopeFactory, synthService) {
+  .factory('soundFactory', ['vcoFactory', 'vcaService', 'envelopeFactory', 'synthesizerService', function (vcoFactory, vcaService, envelopeFactory, synthService) {
     var Sound = function(context, frequency) {
       this.nodes = [];
       this.currentNodes = {};
@@ -52,7 +52,7 @@ angular.module('angularificationApp')
 
           // var newVca = vcaFactory.newVca(synthService.$context, node.id, node.gainValue, node.connections);
           // builtNodes[node.id] = newVca.buildAmplifier();
-          builtNodes[node.id] = synthService.$getAmp(node.id);
+          builtNodes[node.id] = vcaService.$getVca(node.id);
         }
         else if (node.type === 'final_output') {
           builtNodes[node.id] = synthService.$context.destination;

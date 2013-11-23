@@ -1,13 +1,16 @@
 <div id="nodespace" ng-controller="NodespaceCtrl">
 	<div ng-repeat="node in currentNodes" ng-model="currentNodes">
-		
-		<div class="node-switch-container"
-        ng-switch on="node.type">
-          <div class="node-switch" ng-switch-when="vco">Vco</div>
-          <div class="node-switch" ng-switch-when="vca">
-          	<div gainnode id="{{node.id}}"></div>
-          </div>
-          <div class="node-switch" ng-switch-when="final_output">Final Output</div>
+		<div class="node-switch-container" ng-switch on="node.type">
+      <div class="node-switch" ng-switch-when="vco">
+        Vco
       </div>
+      <div class="node-switch" ng-switch-when="vca">
+      	<div gainnode id="{{node.id}}">
+        </div>
+      </div>
+      <div class="node-switch" ng-switch-when="final_output">
+        Final Output
+      </div>
+    </div>
 	</div>
 </div>

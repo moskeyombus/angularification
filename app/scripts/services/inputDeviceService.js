@@ -4,7 +4,6 @@ angular.module('angularificationApp')
   .service('inputDeviceService', function inputDeviceService($rootScope) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-    var depressedKeys = {};
     this.$isEmpty = function(obj) {
       return Object.keys(obj).length === 0;
     };

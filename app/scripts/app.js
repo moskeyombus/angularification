@@ -11,5 +11,5 @@ angular.module('angularificationApp', ['ui.bootstrap'])
         redirectTo: '/'
       });
 
-  })
+  });
 //});

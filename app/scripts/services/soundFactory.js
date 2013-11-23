@@ -9,6 +9,7 @@ angular.module('angularificationApp')
       this.context = context;
 
       // This should be refactored to work recursively
+      // ?? maybe ??  only dynamically building oscillators now
       this.cNodes = this.buildNodes(this.frequency);
       this.currentNodes = this.buildConnections(this.cNodes);
       //this.envelope = envelopeFactory.newEnvelope(synthService.$context);
@@ -49,9 +50,6 @@ angular.module('angularificationApp')
           builtNodes[node.id] = newVco.buildOscillator();
         }
         else if (node.type === 'vca') {
-
-          // var newVca = vcaFactory.newVca(synthService.$context, node.id, node.gainValue, node.connections);
-          // builtNodes[node.id] = newVca.buildAmplifier();
           builtNodes[node.id] = vcaService.$getVca(node.id);
         }
         else if (node.type === 'final_output') {

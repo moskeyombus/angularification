@@ -4,12 +4,12 @@ angular.module('angularificationApp')
   .service('vcaService', ['synthesizerService', 'vcaFactory', function vcaService(synthService, vcaFactory) {
     this.$amplifiers = [];
 
-    this.$addVca = function(gain) {
+    this.$addVca = function() {
       var builtVca;
       var vca = {
         id: synthService.$newId(),
         type: 'vca',
-        gainValue: gain,
+        gainValue: 0,
         connections: []
       };
       synthService.$setNode(vca);

@@ -38,33 +38,11 @@ angular.module('angularificationApp')
 
     this.$getNode = function(id) {
       return this.$nodes[id];
-    },
-
-    // this.$getAmp = function(id) {
-    //   return this.$prebuiltNodes[id];
-    // },
-
-    // this.$setAmp = function(id, amp) {
-    //   this.$prebuiltNodes[id] = amp;
-    // },
+    };
 
     this.$setNode = function(node) {
       this.$nodes[node.id] = node;
-    },
-
-    // this.$addVca = function(gain) {
-    //   nodeCounter += 1;
-    //   var vca = {
-    //     id: nodeCounter,
-    //     type: 'vca',
-    //     gainValue: gain,
-    //     connections: []
-    //   };
-    //   this.$nodes[nodeCounter] = vca;
-    //   var builtVca = vcaFactory.newVca(this.$context, vca.id, vca.gainValue, vca.connections);
-    //   this.$prebuiltNodes[vca.id] = builtVca;
-    //   return builtVca.buildAmplifier();
-    // };
+    };
 
     this.$addFinalOutput = function() {
       nodeCounter += 1;
@@ -83,7 +61,6 @@ angular.module('angularificationApp')
       };
       outNode.connections.push(connection);
     };
-
 
     this.$startNote = function(context, note, sound) {
       activeNotes[note] = sound;

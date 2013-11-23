@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('angularificationApp')
-  .service('synthesizerService', function synthesizerService() {
+  .service('synthesizerService', ['vcaFactory', function synthesizerService(vcaFactory) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     var activeNotes = [];
     var nodeCounter = 0;
     this.$envelopes = [];
     this.$nodes = [];
     this.$context = new webkitAudioContext;
+    this.$prebuiltNodes = [];
 
     this.$addVco = function(type, frequency) {
       nodeCounter += 1;
@@ -30,6 +31,14 @@ angular.module('angularificationApp')
       return this.$nodes[id];
     },
 
+    this.$getAmp = function(id) {
+      return this.$prebuiltNodes[id];
+    },
+
+    this.$setAmp = function(id, amp) {
+      this.$prebuiltNodes[id] = amp;
+    },
+
     this.$setNode = function(id, node) {
       this.$nodes[id] = node;
     },
@@ -43,7 +52,9 @@ angular.module('angularificationApp')
         connections: []
       };
       this.$nodes[nodeCounter] = vca;
-      return vca;
+      var builtVca = vcaFactory.newVca(this.$context, vca.id, vca.gainValue, vca.connections);
+      this.$prebuiltNodes[vca.id] = builtVca;
+      return builtVca.buildAmplifier();
     };
 
     this.$addFinalOutput = function() {
@@ -75,4 +86,4 @@ angular.module('angularificationApp')
       delete activeNotes[note];
     };
 
-  });
+  }]);

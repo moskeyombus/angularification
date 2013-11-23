@@ -8,13 +8,14 @@ angular.module('angularificationApp')
     $scope.gainValue = 0;
 
     $scope.updateGainValue = function(val) {
-      var node;
-      $scope.gainValue = val;
-
-      node = $scope.synthService.$getNode($scope.id)
-      node.gainValue = (val/100);
-      $scope.synthService.$setNode($scope.id, node)
-      console.log($scope.gainValue);
+      var node, amp;
+      $scope.gainValue = (val/100);
+      node = $scope.synthService.$getNode($scope.id); 
+      amp = $scope.synthService.$getAmp($scope.id);
+      node.gainValue = $scope.gainValue;
+      amp.gain.gain.value = node.gainValue;
+      $scope.synthService.$setNode($scope.id, node);
+      $scope.synthService.$setAmp($scope.id, amp);      
     }
 
     $scope.$on('gainValue', function (evt, value) {

@@ -1,6 +1,6 @@
-<div class="gainnode" ng-controller="VcaCtrl">
-<p>{{thisNode.type}}{{thisNode.id}}</p>
+<div class="gainnode" ng-controller="VcaCtrl" ng-model="knobParam">
+<p>{{knobParam}}{{thisNode.id}}</p>
 
-  <input type="text" knob class="gain-amplitude dial" ng-model="knobParam" ng-change="amplitudeChange()">
+  <input type="text" knob class="gain-amplitude dial" ng-model="knobParam" data-name="gainValue">
 
 </div>

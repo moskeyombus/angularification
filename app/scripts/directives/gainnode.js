@@ -12,12 +12,6 @@ angular.module('angularificationApp')
         scope.$watch('id', function(value) {
           scope.vcaId = value;
         });
-        scope.$watch('knobParam', function(value) {
-          console.log('knobParam')
-        });
-        //         $timeout(function() {
-        //   debugger
-        // }, 5 * 1000);
       }
     };
   });

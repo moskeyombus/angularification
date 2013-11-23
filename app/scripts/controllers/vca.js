@@ -1,19 +1,23 @@
 'use strict';
 
 angular.module('angularificationApp')
-  .controller('VcaCtrl', [ '$scope', 'synthesizerService' , function ($scope, synthService) {
-    $scope.id = $scope.vcaId;
+  .controller('VcaCtrl', ['$scope', 'synthesizerService', function ($scope, synthService) {
+    $scope.id = parseInt($scope.vcaId);
+    $scope.synthService = synthService;
     $scope.thisNode = synthService.$getNode($scope.id);
-    $scope.knobParam = 0;
     $scope.gainValue = 0;
-    $scope.amplitudeChange = function (param) {
-         console.log('param') 
-    };
-    $scope.$watch('knobParam', function (value) {
-        console.log('knobz')
-    });
+
+    $scope.updateGainValue = function(val) {
+      var node;
+      $scope.gainValue = val;
+
+      node = $scope.synthService.$getNode($scope.id)
+      node.gainValue = (val/100);
+      $scope.synthService.$setNode($scope.id, node)
+      console.log($scope.gainValue);
+    }
+
     $scope.$on('gainValue', function (evt, value) {
-      console.log(value);
+      evt.currentScope.updateGainValue(value);
     });
-    console.log('test')
   }]);

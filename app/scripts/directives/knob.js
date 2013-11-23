@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularificationApp')
-  .directive('knob', function ($timeout) {
+  .directive('knob', function () {
     return {
       restrict: 'AE',
       scope: {
@@ -15,6 +15,9 @@ angular.module('angularificationApp')
             scope.knobParam = value;
             scope.$emit(scope.name, scope.knobParam);
           }
+        });
+        element.bind('blur', function () {
+          scope.$emit(scope.name, scope.knobParam);
         });
         scope.$watch('number', function (number){
           element.val(number).change();

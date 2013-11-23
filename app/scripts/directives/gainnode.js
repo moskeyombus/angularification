@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('angularificationApp')
-  .directive('gainnode', function ($timeout) {
+  .directive('gainnode', function () {
     return {
       templateUrl: 'views/gainnode.html',
       restrict: 'AE',
+      controller: 'VcaCtrl',
       scope:{
         id:'@'
       },

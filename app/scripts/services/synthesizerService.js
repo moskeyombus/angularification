@@ -30,6 +30,10 @@ angular.module('angularificationApp')
       return this.$nodes[id];
     },
 
+    this.$setNode = function(id, node) {
+      this.$nodes[id] = node;
+    },
+
     this.$addVca = function(gain) {
       nodeCounter += 1;
       var vca = {

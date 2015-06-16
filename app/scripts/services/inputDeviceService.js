@@ -8,19 +8,20 @@ angular.module('angularificationApp')
       return Object.keys(obj).length === 0;
     };
     this.$bindSynthKeys = function() {
-      var keyboard = qwertyHancock({id: 'keyboard', startNote: 'A4', octaves: 2});
-      
-      keyboard.keyDown(function (note, frequency) {
+      var keyboard = new QwertyHancock({id: 'keyboard', startNote: 'A4', octaves: 2});
+
+      keyboard.keyDown = function (note, frequency) {
+        console.log("test")
         $rootScope.$broadcast('note', {
           frequency: frequency,
           note: note
         });
-      });
+      };
 
-      keyboard.keyUp(function (note) {
+      keyboard.keyUp = function (note) {
         $rootScope.$broadcast('stopNote', {
           note: note
         });
-      });
+      };
     };
   });

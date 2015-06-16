@@ -7,7 +7,7 @@ angular.module('angularificationApp')
     var nodeCounter = 0;
     this.$envelopes = [];
     this.$nodes = [];
-    this.$context = new webkitAudioContext;
+    this.$context = new AudioContext;
     this.$prebuiltNodes = [];
 
     this.$newId = function() {

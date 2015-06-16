@@ -10,7 +10,8 @@
     "angular-bootstrap": "~0.6.0",
     "Keypress": "~1.0.8",
     "qwerty-hancock": "~0.2.0",
-    "jquery-knob": "~1.2.3"
+    "jquery-knob": "~1.2.3",
+    "raphael": "~2.1.4"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.7",
